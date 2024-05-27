@@ -171,10 +171,10 @@ exports.isLoggedIn = async (req, res, next) => {
     }
     
 
-    const user = await User.findById('664c71bce3d5256d514c80cd');
-    if(!user) {console.log("User not found")}
-    res.locals.user = user;
-    req.user = user;
+    // const user = await User.findById('664c71bce3d5256d514c80cd');
+    // if(!user) {console.log("User not found")}
+    // res.locals.user = user;
+    // req.user = user;
 
     // res.cookie('yyy','ffff')
     return next();
@@ -301,7 +301,6 @@ exports.resetPassword = async (req, res, next) => {
 
 exports.updatePassword = async (req, res, next) => {
   try {
-    console.log(req.user)
     const user = await User.findById(req.user.id).select('+password');
     if (!user) {
       return next(new AppError('please login to get access', 401));

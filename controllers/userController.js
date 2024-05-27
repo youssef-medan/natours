@@ -48,7 +48,6 @@ const filterdObj = (obj, ...allowedFields) => {
 
 exports.updateMe = async (req, res, next) => {
   try {
-    console.log(req.file);
     if (req.body.password || req.body.passwordConfirm)
       return next(
         new AppError(

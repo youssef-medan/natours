@@ -8,19 +8,18 @@ export const login = async (email, password) => {
     const res = await axios({
       method: 'POST',
       withCredentials: true,
-      url: 'http://127.0.0.1:3000/api/v1/users/login',
+      url: '/api/v1/users/login',
       data: {
         email,
         password
       }
     });
     const tok = res.data.token
-    console.log(tok);
 
     if (res.data.status === 'success') {
       showAlert('success', 'Logged in successfully!');
       window.setTimeout(() => {
-        document.cookie = `jwt=${tok}`
+        // document.cookie = `jwt=${tok}`
         location.assign('/');
       }, 1500);
     }
@@ -33,10 +32,10 @@ export const logout = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: 'http://127.0.0.1:3000/api/v1/users/logout'
+      url: '/api/v1/users/logout'
     });
     if ((res.data.status = 'success')){
-      document.cookie = `jwt=logout`
+      // document.cookie = `jwt=logout`
       location.assign('/');
     } 
   } catch (err) {

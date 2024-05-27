@@ -9,6 +9,7 @@ const mongoSanitize =require('express-mongo-sanitize')
 const xss = require('xss-clean')
 const hpp = require('hpp')
 const cors = require('cors');
+const compression = require('compression')
 const cookieParser = require('cookie-parser')
 const AppError = require('./Utils/appError')
 const globalErrorHandler = require('./controllers/errorController');
@@ -78,9 +79,10 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use((req, res, next) => {
   // console.log(req.headers);
-  console.log(req.cookies);
   next();
 });
+
+app.use(compression())
 
 //test middleware (add requestTime to every req)
 app.use((req, res, next) => {

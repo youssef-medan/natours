@@ -11,7 +11,7 @@ router.get('/logout',authController.logout);
 router.post('/forgotpassword',authController.forgotPassword);
 router.patch('/resetpassword/:token',authController.resetPassword);
 
-router.use(authController.isLoggedIn)
+router.use(authController.protect)
 //any route comes after this authController.protect will apply on them
 
 
